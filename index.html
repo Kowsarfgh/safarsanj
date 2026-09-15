@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>برنامه‌ریز سفر تبریز</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <h1>برنامه‌ریز سفر تبریز</h1>
+    <p>مبدأ همیشه تبریز است؛ مقصد را از آذربایجان شرقی انتخاب کنید و هزینه سفر را با خودرو، اتوبوس یا قطار مقایسه کنید.</p>
+  </header>
+
+  <div class="tile"></div>
+
+  <section class="ticket">
+    <h2>مشخصات سفر</h2>
+
+    <form id="trip-form">
+      <div class="field-grid">
+
+        <div class="field">
+          <label>مبدأ</label>
+          <input value="تبریز، آذربایجان شرقی" readonly>
+          <small>مبدأ این نسخه همیشه تبریز است.</small>
+        </div>
+
+        <div class="field">
+          <label for="destination">مقصد</label>
+          <select id="destination" required></select>
+        </div>
+
+        <div class="field">
+          <label for="vehicle">وسیله نقلیه</label>
+          <select id="vehicle" required></select>
+        </div>
+
+        <div class="field">
+          <label for="people">تعداد افراد</label>
+          <input type="number" id="people" min="1" value="2" required>
+        </div>
+
+        <div class="field">
+          <label for="days">تعداد روزهای سفر</label>
+          <input type="number" id="days" min="1" value="3" required>
+        </div>
+
+        <div class="field">
+          <label for="budget">بودجه کل (تومان)</label>
+          <input type="number" id="budget" min="0" placeholder="مثلاً 20000000" required>
+        </div>
+
+        <div class="field hidden" id="fuel-field">
+          <label for="fuelPrice">قیمت بنزین (تومان/لیتر)</label>
+          <input type="number" id="fuelPrice" min="0" value="10000" step="500">
+          <small>مصرف پیش‌فرض خودرو: ۷.۵ لیتر در ۱۰۰ کیلومتر. قیمت بنزین قابل تغییر است.</small>
+        </div>
+
+      </div>
+
+      <div class="distance-box">
+        فاصله رفت تا مقصد: <strong id="distance-one-way">—</strong>
+        &nbsp; | &nbsp;
+        فاصله رفت‌وبرگشت: <strong id="distance-round">—</strong>
+      </div>
+
+      <p class="status" id="fetch-status"></p>
+
+      <button class="btn" id="submit-btn" type="submit">محاسبه هزینه سفر</button>
+    </form>
+  </section>
+
+  <section id="results">
+    <h2>نتیجه تحلیل</h2>
+    <p id="results-sub" class="note"></p>
+
+    <div class="summary-grid" id="summary-grid"></div>
+    <div class="tier-grid" id="tier-grid"></div>
+    <div class="recommend" id="recommend"></div>
+
+    <div class="compare">
+      <table>
+        <thead>
+          <tr>
+            <th>مقصد</th>
+            <th>مسافت رفت</th>
+            <th>هزینه</th>
+            <th>درصد بودجه</th>
+            <th>به‌صرفه بودن</th>
+            <th>تعداد جاذبه</th>
+          </tr>
+        </thead>
+        <tbody id="comparison-body"></tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      هزینه اقامت، غذا، تفریح و خرید «برآوردی» هستند؛ فاصله جاده‌ای در صورت دسترسی از OSRM/OpenStreetMap دریافت می‌شود.
+      هزینه خودرو بر اساس رفت‌وبرگشت، مصرف ۷.۵ لیتر در ۱۰۰ کیلومتر و قیمت بنزین واردشده محاسبه می‌شود.
+    </p>
+  </section>
+
+  <footer>
+    برنامه‌ریز سفر تبریز — برآوردها تقریبی هستند و قیمت‌های زنده بلیت یا هتل محسوب نمی‌شوند.
+  </footer>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

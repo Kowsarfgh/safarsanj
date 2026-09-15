@@ -1,0 +1,329 @@
+/* 
+   توکن‌های طراحی — الهام از کاشی مسجد کبود تبریز
+    */
+   :root {
+    --bg: #14232B;
+    --surface: #1C333D;
+    --surface-2: #22404C;
+    --turquoise: #3B9DA1;
+    --gold: #C9A227;
+    --red: #A6473C;
+    --ink: #EDE6D6;
+    --dim: #9FB2B8;
+    --border: rgba(237, 230, 214, 0.14);
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Vazirmatn, sans-serif;
+    line-height: 1.7;
+  }
+  
+  .wrap {
+    max-width: 980px;
+    margin: auto;
+    padding: 42px 22px 70px;
+  }
+  
+  /* 
+     هدر
+      */
+  header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.1rem);
+    margin: 0 0 8px;
+    font-weight: 900;
+  }
+  
+  header p {
+    color: var(--dim);
+    margin: 0 auto;
+    max-width: 650px;
+  }
+  
+  .tile {
+    height: 14px;
+    max-width: 320px;
+    margin: 30px auto 38px;
+    background-image:
+      linear-gradient(45deg, var(--turquoise) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--turquoise) 25%, transparent 25%);
+    background-size: 14px 14px;
+    opacity: 0.55;
+  }
+  
+  /* 
+     کارت‌های اصلی
+      */
+  .ticket,
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+  
+  .ticket {
+    border-right: 5px solid var(--turquoise);
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    margin: 0 0 22px;
+  }
+  
+  /* 
+     فرم
+      */
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  
+  @media (max-width: 650px) {
+    .field-grid { grid-template-columns: 1fr; }
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  
+  .field label {
+    font-size: 0.9rem;
+    color: var(--dim);
+  }
+  
+  input,
+  select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px 13px;
+    color: var(--ink);
+    font: inherit;
+  }
+  
+  input:focus,
+  select:focus {
+    outline: 2px solid var(--turquoise);
+  }
+  
+  small {
+    color: var(--dim);
+    font-size: 0.78rem;
+  }
+  
+  .hidden { display: none !important; }
+  
+  .distance-box {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 13px 15px;
+    margin-top: 18px;
+  }
+  
+  .distance-box strong { color: var(--turquoise); }
+  
+  .status {
+    min-height: 25px;
+    color: var(--dim);
+    font-size: 0.84rem;
+    margin: 10px 0;
+  }
+  
+  .btn {
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    background: var(--turquoise);
+    color: #0D1A1F;
+    padding: 14px;
+    font: 700 1rem Vazirmatn;
+    cursor: pointer;
+  }
+  
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: wait;
+  }
+  
+  /* 
+     نتایج
+      */
+  #results { display: none; }
+  #results.visible { display: block; }
+  
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  
+  @media (max-width: 700px) {
+    .summary-grid { grid-template-columns: 1fr; }
+  }
+  
+  .summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 19px;
+  }
+  
+  .summary-card .label {
+    color: var(--dim);
+    font-size: 0.82rem;
+  }
+  
+  .summary-card .value {
+    font-size: 1.25rem;
+    font-weight: 900;
+    margin-top: 4px;
+  }
+  
+  /* 
+     کارت‌های سه‌سطحی
+     */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  @media (max-width: 760px) {
+    .tier-grid { grid-template-columns: 1fr; }
+  }
+  
+  .tier-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 7px;
+    padding: 20px;
+  }
+  
+  .tier-card.economic { --accent: var(--turquoise); }
+  .tier-card.normal   { --accent: var(--gold); }
+  .tier-card.luxury   { --accent: var(--red); }
+  
+  .tier-name {
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .total {
+    font-size: 1.45rem;
+    font-weight: 900;
+    margin: 4px 0;
+  }
+  
+  .per {
+    font-size: 0.82rem;
+    color: var(--dim);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--dim);
+    font-size: 0.84rem;
+    padding: 3px 0;
+  }
+  
+  li span:last-child { color: var(--ink); }
+  
+  .badge {
+    display: inline-block;
+    margin-top: 13px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+  }
+  
+  .badge.ok   { background: rgba(59, 157, 161, 0.16); color: #6FC4C7; }
+  .badge.over { background: rgba(166, 71, 60, 0.16);  color: #D98F86; }
+  
+  .note {
+    font-size: 0.8rem;
+    color: var(--dim);
+    margin-top: 16px;
+  }
+  
+  /*
+     پیشنهاد
+      */
+  .recommend {
+    background: var(--surface);
+    border-right: 4px solid var(--gold);
+    padding: 20px;
+    border-radius: 7px;
+    margin-top: 18px;
+  }
+  
+  .recommend h3 { margin: 0 0 6px; }
+  
+  /* 
+     جدول مقایسه
+      */
+  .compare {
+    overflow: auto;
+    margin-top: 18px;
+  }
+  
+  .compare table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+  }
+  
+  .compare th,
+  .compare td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+    text-align: right;
+  }
+  
+  .compare th {
+    color: var(--dim);
+    font-size: 0.82rem;
+  }
+  
+  .compare td { font-size: 0.85rem; }
+  
+  .best {
+    color: #6FC4C7;
+    font-weight: 700;
+  }
+  
+  /* 
+     فوتر
+      */
+  footer {
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.78rem;
+    margin-top: 35px;
+  }

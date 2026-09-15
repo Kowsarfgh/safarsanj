@@ -1,0 +1,16 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node (اگه بعداً اضافه کردی)
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.local
