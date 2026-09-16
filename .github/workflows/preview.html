@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>سفرسنج — پیش‌نمایش</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1200px;
+    height: 627px;
+    overflow: hidden;
+  }
+
+  body {
+    background: #14232B;
+    color: #EDE6D6;
+    font-family: 'Vazirmatn', sans-serif;
+    position: relative;
+  }
+
+  .tile-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(45deg, rgba(59,157,161,0.06) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(59,157,161,0.06) 25%, transparent 25%);
+    background-size: 30px 30px;
+    opacity: 0.7;
+  }
+
+  .glow {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(59,157,161,0.25) 0%, transparent 65%);
+    filter: blur(40px);
+  }
+
+  .glow-gold {
+    position: absolute;
+    bottom: -180px;
+    left: -180px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+    filter: blur(50px);
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 55px 70px 55px 480px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3B9DA1 0%, #5FBEC2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 8px 24px rgba(59,157,161,0.35);
+  }
+
+  .logo-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: #EDE6D6;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-tag {
+    font-size: 12px;
+    color: #9FB2B8;
+    margin-top: 2px;
+  }
+
+  .hero {
+    max-width: 640px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(59,157,161,0.16);
+    border: 1px solid rgba(59,157,161,0.35);
+    color: #5FBEC2;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 .accent {
+    color: #5FBEC2;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    color: #9FB2B8;
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  .icons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .icon-chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 15px;
+    background: rgba(34,64,76,0.7);
+    border: 1px solid rgba(237,230,214,0.12);
+    border-radius: 10px;
+    font-size: 13px;
+    color: #EDE6D6;
+    backdrop-filter: blur(8px);
+  }
+
+  .icon-chip .emoji {
+    font-size: 15px;
+  }
+
+  .map-visual {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+  }
+
+  .node {
+    position: absolute;
+    border-radius: 50%;
+    background: #3B9DA1;
+    box-shadow: 0 0 20px rgba(59,157,161,0.8);
+  }
+
+  .node.origin {
+    width: 22px;
+    height: 22px;
+    background: #C9A227;
+    box-shadow: 0 0 30px rgba(201,162,39,0.9);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .node.dest {
+    width: 12px;
+    height: 12px;
+  }
+
+  .route {
+    position: absolute;
+    background: rgba(95,190,194,0.6);
+    height: 2px;
+    transform-origin: left center;
+  }
+
+  .pulse {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(201,162,39,0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 3s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
+  }
+
+  .floating-card {
+    position: absolute;
+    left: 90px;
+    bottom: 55px;
+    background: rgba(28,51,61,0.9);
+    border: 1px solid rgba(59,157,161,0.35);
+    border-radius: 14px;
+    padding: 16px 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    min-width: 220px;
+    z-index: 3;
+  }
+
+  .floating-card .label {
+    font-size: 11px;
+    color: #9FB2B8;
+    margin-bottom: 4px;
+  }
+
+  .floating-card .value {
+    font-size: 24px;
+    font-weight: 900;
+    color: #5FBEC2;
+  }
+
+  .floating-card .bar {
+    height: 4px;
+    background: rgba(237,230,214,0.1);
+    border-radius: 999px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+
+  .floating-card .bar-fill {
+    height: 100%;
+    width: 87%;
+    background: linear-gradient(90deg, #3B9DA1, #5FBEC2);
+    border-radius: 999px;
+  }
+</style>
+</head>
+<body>
+
+<div class="tile-bg"></div>
+<div class="glow"></div>
+<div class="glow-gold"></div>
+
+<!-- نقشه استایلایز -->
+<div class="map-visual">
+  <div class="node origin"></div>
+  <div class="pulse"></div>
+
+  <div class="route" style="top:50%; left:50%; width:140px; transform:rotate(-25deg);"></div>
+  <div class="route" style="top:50%; left:50%; width:160px; transform:rotate(20deg);"></div>
+  <div class="route" style="top:50%; left:50%; width:120px; transform:rotate(-70deg);"></div>
+  <div class="route" style="top:50%; left:50%; width:150px; transform:rotate(60deg);"></div>
+  <div class="route" style="top:50%; left:50%; width:130px; transform:rotate(160deg);"></div>
+
+  <div class="node dest" style="top:28%; left:76%;"></div>
+  <div class="node dest" style="top:66%; left:78%;"></div>
+  <div class="node dest" style="top:18%; left:48%;"></div>
+  <div class="node dest" style="top:76%; left:62%;"></div>
+  <div class="node dest" style="top:50%; left:14%;"></div>
+</div>
+
+<!-- کارت شناور -->
+<div class="floating-card">
+  <div class="label">امتیاز به‌صرفه بودن</div>
+  <div class="value">۸۷ / ۱۰۰</div>
+  <div class="bar"><div class="bar-fill"></div></div>
+</div>
+
+<!-- محتوای اصلی -->
+<div class="content">
+
+  <div class="logo">
+    <div class="logo-mark">🧭</div>
+    <div>
+      <div class="logo-name">سفرسنج</div>
+      <div class="logo-tag">موتور تخمین هزینه سفر</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <span class="badge">مبدأ ثابت: تبریز</span>
+    <h1>
+      هزینه سفرت رو <span class="accent">دقیق</span><br>
+      حساب کن، بعد راه بیفت.
+    </h1>
+    <p class="subtitle">
+      مقصد، بودجه و تعداد نفرات رو وارد کن؛ کل هزینه سفر با جزئیات
+      و امتیاز «به‌صرفه بودن» هر شهر رو ببین.
+    </p>
+  </div>
+
+  <div class="icons">
+    <div class="icon-chip"><span class="emoji">🚗</span> خودرو</div>
+    <div class="icon-chip"><span class="emoji">🚌</span> اتوبوس</div>
+    <div class="icon-chip"><span class="emoji">🚆</span> قطار</div>
+    <div class="icon-chip"><span class="emoji">🏡</span> اقامت</div>
+    <div class="icon-chip"><span class="emoji">🍽</span> خوراک</div>
+    <div class="icon-chip"><span class="emoji">🎟</span> تفریح</div>
+  </div>
+
+</div>
+
+</body>
+</html>
